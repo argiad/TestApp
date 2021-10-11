@@ -61,7 +61,7 @@ class SearchViewModel @Inject constructor(
         searchUseCase(query = query.value, page = page).onEach { result ->
 
             val list = result.data ?: emptyList()
-            val newList = mutableListOf<Article>().apply { addAll(_state.value.articles); addAll(list) }
+            val newList = if (page != 0) mutableListOf<Article>().apply { addAll(_state.value.articles); addAll(list) } else list
 
             when (result) {
                 is Resource.Success -> {
