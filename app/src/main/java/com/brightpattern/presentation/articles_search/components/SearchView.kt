@@ -1,4 +1,4 @@
-package com.brightpattern.presentation.articles_search
+package com.brightpattern.presentation.articles_search.components
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,6 +16,7 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 
@@ -77,5 +78,13 @@ fun SearchView(
                 }
             }
         }
+    }
+}
+
+@Preview(widthDp = 250, heightDp = 50)
+@Composable
+fun SquareComposablePreview() {
+    SearchView(query = "", onQueryChanged = {}) {
+
     }
 }

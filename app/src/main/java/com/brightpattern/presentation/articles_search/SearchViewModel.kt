@@ -13,8 +13,12 @@ import com.brightpattern.common.Resource
 import com.brightpattern.domain.model.Article
 import com.brightpattern.domain.use_case.search.SearchUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -31,6 +35,15 @@ class SearchViewModel @Inject constructor(
 
     private var listScrollPosition = 0
 
+    private var job: Job? = null
+
+    private fun getJob(): Job {
+        return GlobalScope.launch {
+            delay(2000)
+            search()
+        }
+    }
+
     init {
         savedStateHandle.get<Int>(STATE_KEY_PAGE)?.let { p ->
             setPage(p)
@@ -41,6 +54,13 @@ class SearchViewModel @Inject constructor(
         savedStateHandle.get<Int>(STATE_KEY_LIST_POSITION)?.let { p ->
             setListScrollPosition(p)
         }
+    }
+
+    fun updateQueryString(queryString: String) {
+        job?.cancel()
+        job = getJob()
+        query.value = queryString
+        job?.start()
     }
 
     fun nextPage() {

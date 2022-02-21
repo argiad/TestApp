@@ -12,4 +12,6 @@ object Constants {
     const val STATE_KEY_PAGE = "state.query.page"
     const val STATE_KEY_LIST_POSITION = "state.query.list_position"
     const val PARAM_ARTICLE_ID = "articleId"
+    const val MOCK_DATA = "mockdata/sample_response.json"
+    const val AUTO_SEARCH_DELAY_MS = 2000
 }

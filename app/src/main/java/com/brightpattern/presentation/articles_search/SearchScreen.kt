@@ -19,6 +19,7 @@ import androidx.navigation.NavController
 import com.brightpattern.common.Constants
 import com.brightpattern.presentation.Screen
 import com.brightpattern.presentation.articles_search.components.ArticleSearchItem
+import com.brightpattern.presentation.articles_search.components.SearchView
 
 @Composable
 fun SearchScreen(
@@ -33,7 +34,8 @@ fun SearchScreen(
             SearchView(
                 query = viewModel.query.value,
                 onQueryChanged = {
-                    viewModel.query.value = it
+//                    viewModel.query.value = it
+                    viewModel.updateQueryString(it)
                 },
                 onExecuteSearch = viewModel::search
             )

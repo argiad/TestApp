@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -15,11 +16,15 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import com.brightpattern.common.Constants
+import com.brightpattern.data.remote.dto.Headline
+import com.brightpattern.data.remote.dto.Keyword
 import com.brightpattern.domain.model.Article
 import com.brightpattern.presentation.articles_search.KeywordTagView
+import com.brightpattern.presentation.ui.theme.NYTTheme
 import com.google.accompanist.flowlayout.FlowRow
 
 @Composable
@@ -36,7 +41,8 @@ fun ArticleSearchItem(
         elevation = 8.dp,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(20.dp).clickable(onClick = onItemClick),
+            .padding(20.dp)
+            .clickable(onClick = onItemClick),
     ) {
         Column(
             modifier = Modifier
@@ -118,4 +124,28 @@ fun ArticleSearchItem(
         }
     }
 
+}
+
+@Preview(name = "Basic")
+@Composable
+fun showItemPreview() {
+    NYTTheme {
+
+
+        ArticleSearchItem(
+            article = Article(
+                "Abstract",
+                Headline(null, null, "Headline", "name", null, null, null),
+                "dfgdg",
+                "Lead Paragraph",
+                listOf(),
+                listOf(Keyword("Keyword", "Keyword", 1, "keyword")),
+                "03/02/2003",
+                "http://ww",
+                "http://ww",
+                ""
+            )
+        ) {
+        }
+    }
 }
